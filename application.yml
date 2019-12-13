@@ -1,0 +1,17 @@
+# YML for all application
+# [Warning] Below properties will be applied to all servers, but with the LOWEST priority.
+spring:
+  # Common properties all server that are using turbine hystrix stream and sleuth at the same time
+  sleuth:
+    scheduled:   # exlclude HystrixStreamTask scheduled task
+      skipPattern: org.springframework.cloud.netflix.hystrix.stream.HystrixStreamTask
+    integration: # exclude hystrixStreamOutput channel
+      patterns: '^(?!hystrixStreamOutput)([a-z0-9.]+)$'
+  cloud:
+    config:
+      overrideSystemProperties: false # CmdLine,SysProperties,SysEnv will have higher priority than Spring Cloud Config Server's
+
+# config server health indicator disabled globally
+health:
+  config:
+    enabled: false

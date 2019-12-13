@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: native
+  main:
+    banner-mode: "off"
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: 'file:./application,file:./application/{application}'
+
+logging:
+  level:
+    root: DEBUG
